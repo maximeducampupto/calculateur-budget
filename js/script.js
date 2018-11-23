@@ -1,13 +1,13 @@
 function getRecettesTotal()
 {
-    let recettesTotal = 0;
+    let temp = 0;
 
     for (let recette of recettes)
     {
-        recettesTotal += recette.montant;
+        temp += recette.montant;
     }
 
-    return recettesTotal;
+    return temp;
 }
 
 function getDepensesTotal()
@@ -30,11 +30,10 @@ function updateRecettesTotal(nom, valeur)
         if (recette.nom === nom)
         {
             recette.montant = parseInt(valeur);
-            console.log(recette.montant);
         }
     }
 
-    document.getElementById('recettes-total').innerHTML = `Total: ${getRecettesTotal()}`;
+    recettesTotal.innerHTML = `Total: ${getRecettesTotal()}`;
 }
 
 
@@ -53,91 +52,62 @@ function updateDepensesTotal(nom, valeur)
 }
 
 
-function updateTotal()
-{
-    let sum = getRecettesTotal() - getDepensesTotal();
-    total.innerHTML = sum;
-}
 
 
-let depensesContainer = document.getElementById('depenses'),
-    recettesContainer = document.getElementById('recettes'),
-    total = document.getElementById('resultat'),
-    inputsRecettes = document.getElementsByClassName('input-recettes'),
-    inputsDepenses = document.getElementsByClassName('input-depenses'),
 
-    depenses = [
-        {
-            nom: "Loyer",
-            montant: 0,
-        },
-        {
-            nom: "Eau",
-            montant: 0,
-        },
-        {
-            nom: "Electricité",
-            montant: 0,
-        },
-        {
-            nom: "Gaz",
-            montant: 0,
-        },
-        {
-            nom: "Loyer",
-            montant: 0,
-        },
-        {
-            nom: "Internet et Téléphone",
-            montant: 0,
-        },
-        {
-            nom: "Assurance Maison",
-            montant: 0,
-        },
-        {
-            nom: "Assurance Véhicule",
-            montant: 0,
-        },
-        {
-            nom: "Frais de garde",
-            montant: 0,
-        },
-        {
-            nom: "Courses",
-            montant: 0,
-        },
-        {
-            nom: "Essence",
-            montant: 0,
-        },
-        {
-            nom: "Sorties",
-            montant: 0,
-        },
-],
 
-    recettes = [
-        {
-            nom: "Salaires",
-            montant: 0,
-        },
-        {
-            nom: "Aides",
-            montant: 0,
-        },
-        {
-            nom: "Rentes",
-            montant: 0,
-        },
-        {
-            nom: "Autres",
-            montant: 0,
-        }
-    ],
 
-    epargne = null;
 
+let epargneInput = document.getElementById('epargne'),
+    recetteSource = document.getElementById('recette-source'),
+    recetteMontant = document.getElementById('recette-montant'),
+    recetteAjout = document.getElementById('recettes-ajout'),
+    recettesTotal = document.getElementById('recettes-total'),
+    depenseSource = document.getElementById('depense-source'),
+    depenseMontant = document.getElementById('depense-montant'),
+    depenseAjout = document.getElementById('depense-ajout'),
+    epargne = null,
+
+    depenses = [],
+
+    recettes = [];
+
+
+
+
+
+
+
+
+
+epargneInput.addEventListener('blur', function(e) {
+    epargne = e.target.value;
+    alert(epargne);
+});
+
+recetteAjout.addEventListener('click', function(){
+
+    let source = recetteSource.value,
+        montant = parseInt(recetteMontant.value),
+        temp = {source, montant};
+
+
+    recettes.push(temp);
+    updateRecettesTotal();
+});
+
+depenseAjout.addEventListener('click', function(){
+
+    let source = depenseSource.value,
+        montant = parseInt(depenseMontant.value),
+        temp = {source, montant};
+
+    depenses.push(temp);
+    updateDepensesTotal();
+});
+
+
+/*
 
 for (let recette of recettes)
 {
@@ -195,3 +165,5 @@ for (let o = 0; o < inputsDepenses.length; o++)
     });
 }
 
+
+ */
