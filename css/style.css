@@ -13,7 +13,6 @@ body {
 
 #screen-calculateur, #screen-total {
     width: 100vw;
-    height: 100vh;
     margin: 5rem auto;
     text-align: center;
     color: cornflowerblue;
@@ -22,7 +21,7 @@ body {
 }
 
 #screen-total {
-    bottom: 110vh;
+    bottom: 95vh;
     left: 2000px;
 }
 
