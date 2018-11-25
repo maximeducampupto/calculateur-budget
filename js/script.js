@@ -1,7 +1,6 @@
 function getRecettesTotal()
 {
     let temp = 0;
-
     for (let recette of recettes)
     {
         temp += recette.montant;
@@ -12,60 +11,73 @@ function getRecettesTotal()
 
 function getDepensesTotal()
 {
-    let depensesTotal = 0;
+    let temp = 0;
+    for (let depense of depenses)
+    {
+      temp += depense.montant;
+    }
+
+    return temp;
+}
+
+function getTotal()
+{
+    console.log(getRecettesTotal());
+    console.log(getDepensesTotal());
+    if (epargne == null)
+    {
+        return getRecettesTotal() - getDepensesTotal();
+    } else {
+        return (epargne + getRecettesTotal()) - getDepensesTotal();
+    }
+}
+
+function displayScreenTotal()
+{
+    h2_total.innerHTML = `Total des opérations: ${getTotal()}`;
+
+   for (let recette of recettes)
+   {
+       let li = document.createElement('li');
+       li.innerHTML = `${recette.source} : ${recette.montant}`;
+       recettesRecapList.appendChild(li);
+   }
 
     for (let depense of depenses)
     {
-        depensesTotal += depense.montant;
+        let li = document.createElement('li');
+        li.innerHTML = `${depense.source} : ${depense.montant}`;
+        depensesRecapList.appendChild(li);
     }
 
-    return depensesTotal;
+    recapRecettesTotal.innerHTML = `Total des recettes: ${getRecettesTotal()}`;
+    recapDepensesTotal.innerHTML = `Total des dépenses: ${getDepensesTotal()}`;
+
+    handleAnimations();
 }
 
-
-function updateRecettesTotal(nom, valeur)
+function handleAnimations()
 {
-    for (let recette of recettes)
-    {
-        if (recette.nom === nom)
-        {
-            recette.montant = parseInt(valeur);
-        }
-    }
-
-    recettesTotal.innerHTML = `Total: ${getRecettesTotal()}`;
+    document.getElementById('screen-calculateur').classList.add('calculateurToLeft');
+    document.getElementById('screen-total').classList.add('screenTotalToLeft');
 }
-
-
-function updateDepensesTotal(nom, valeur)
-{
-    for (let depense of depenses)
-    {
-        if (depense.nom === nom)
-        {
-            depense.montant = parseInt(valeur);
-            console.log(depense.montant);
-        }
-    }
-
-    document.getElementById('depenses-total').innerHTML = `Total: ${getDepensesTotal()}`;
-}
-
-
-
-
-
-
-
 
 let epargneInput = document.getElementById('epargne'),
     recetteSource = document.getElementById('recette-source'),
     recetteMontant = document.getElementById('recette-montant'),
     recetteAjout = document.getElementById('recettes-ajout'),
     recettesTotal = document.getElementById('recettes-total'),
+    recettesRecapList = document.getElementById('recettes-recap-list'),
+    recapRecettesTotal = document.getElementById('recap-recettes-total'),
     depenseSource = document.getElementById('depense-source'),
     depenseMontant = document.getElementById('depense-montant'),
     depenseAjout = document.getElementById('depense-ajout'),
+    depenseTotal = document.getElementById('depenses-total'),
+    depensesRecapList = document.getElementById('depenses-recap-list'),
+    recapDepensesTotal = document.getElementById('recap-depenses-total'),
+    buttonGetTotal = document.getElementById('get-total'),
+    h2_total = document.getElementById('h2-total'),
+
     epargne = null,
 
     depenses = [],
@@ -74,15 +86,8 @@ let epargneInput = document.getElementById('epargne'),
 
 
 
-
-
-
-
-
-
 epargneInput.addEventListener('blur', function(e) {
-    epargne = e.target.value;
-    alert(epargne);
+    epargne = parseInt(e.target.value);
 });
 
 recetteAjout.addEventListener('click', function(){
@@ -93,7 +98,7 @@ recetteAjout.addEventListener('click', function(){
 
 
     recettes.push(temp);
-    updateRecettesTotal();
+    recettesTotal.innerHTML = `Total des recettes: ${getRecettesTotal()}`;
 });
 
 depenseAjout.addEventListener('click', function(){
@@ -103,67 +108,9 @@ depenseAjout.addEventListener('click', function(){
         temp = {source, montant};
 
     depenses.push(temp);
-    updateDepensesTotal();
+    depenseTotal.innerHTML = `Total des dépenses: ${getDepensesTotal()}`;
 });
 
-
-/*
-
-for (let recette of recettes)
-{
-    let div = document.createElement('div'),
-        span = document.createElement('span'),
-        input = document.createElement('input');
-
-    span.innerHTML = recette.nom;
-    input.value = recette.montant;
-    input.id = recette.nom;
-    input.classList.add('input-recettes');
-
-    div.appendChild(span);
-    div.appendChild(input);
-
-    recettesContainer.appendChild(div);
-}
-
-for (let depense of depenses)
-{
-    let div = document.createElement('div'),
-        span = document.createElement('span'),
-        input = document.createElement('input');
-
-    span.innerHTML = depense.nom;
-    input.value = depense.montant;
-    input.id = depense.nom;
-    input.classList.add('input-depenses');
-
-    div.appendChild(span);
-    div.appendChild(input);
-
-    depensesContainer.appendChild(div);
-}
-
-document.getElementById('recettes-total').innerHTML = `Total: ${getRecettesTotal()}`;
-document.getElementById('depenses-total').innerHTML =`Total: ${getDepensesTotal()}`;
-
-
-for (let i = 0; i < inputsRecettes.length; i++)
-{
-    inputsRecettes[i].addEventListener('blur', function()
-    {
-        updateRecettesTotal(this.id, this.value);
-        updateTotal();
-    });
-}
-
-for (let o = 0; o < inputsDepenses.length; o++)
-{
-    inputsDepenses[o].addEventListener('blur', function()
-    {
-        updateDepensesTotal(this.id, this.value);
-        updateTotal();
-    });
-}
-
-
- */
+buttonGetTotal.addEventListener('click', function() {
+   displayScreenTotal();
+});

@@ -5,103 +5,58 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Votre aide au calcul de budget</title>
 </head>
 <body>
 
+<div class="wrapper">
+    <div id="screen-calculateur">
 
-  <div id="screen-calculateur">
-      <h1>Votre aide au calcul de buget</h1>
+        <div id="epargne-wrapper">
+            <h2>Votre épargne</h2>
+            <input type="text" id="epargne" placeholder="Ex: 1000">
+        </div>
 
-      <div id="epargne-wrapper">
-          <h1>Votre épargne</h1>
-          <input type="text" id="epargne">
-      </div>
+        <div>
+            <div id="recettes-wrapper">
+                <h2>Vos recettes</h2>
+                <input type="text" id="recette-source" class="recette-input" placeholder="Ex: Salaires">
+                <input type="text" id="recette-montant" class="recette-input" placeholder="Ex: 1400">
+                <button id="recettes-ajout">Ajouter une recette</button>
+                <p id="recettes-total"></p>
+            </div>
 
-      <div>
-          <div id="recettes-wrapper">
-              <h1>Vos recettes</h1>
-              <input type="text" id="recette-source" class="recette-input">
-              <input type="text" id="recette-montant" class="recette-input">
-              <button id="recettes-ajout">Ajout</button>
-              <p id="recettes-total"></p>
-          </div>
+            <div id="depenses-wrapper">
+                <h2>Vos dépenses</h2>
+                <input type="text" id="depense-source" placeholder="Ex: Essence">
+                <input type="text" id="depense-montant" placeholder="Ex: 350">
+                <button id="depense-ajout">Ajouter une dépense</button>
+                <p id="depenses-total"></p>
+            </div>
+        </div>
 
-          <div id="depenses-wrapper">
-              <h1>Vos dépenses</h1>
-              <input type="text" id="depense-source">
-              <input type="text" id="depense-montant">
-              <button id="depense-ajout"></button>
-              <p>Total dépenses: montant</p>
-          </div>
-      </div>
+        <button id="get-total">Afficher le total</button>
+    </div>
 
-      <button id="get-total">Afficher le total</button>
-  </div>
+    <div id="screen-total">
+        <h1>Total des opérations:</h1>
 
+        <h2 id="h2-total">Il vous reste: 300€</h2>
 
-  <div id="screen-total">
-      <h1>Total des opérations:</h1>
+        <div id="recettes-recap">
+            <h1>Récapitulatif de vos recettes</h1>
+            <ul id="recettes-recap-list"> </ul>
+            <p id="recap-recettes-total"></p>
+        </div>
 
-      <h2>Il vous reste: 300€</h2>
-
-      <div id="recettes-recap">
-          <h1>Récapitulatif de vos recettes</h1>
-          <ul>
-              <li>recette: montant</li>
-              <li>recette: montant</li>
-              <li>recette: montant</li>
-              <li>...</li>
-          </ul>
-          <p>Total recettes: montant </p>
-      </div>
-
-      <div id="depenses-recap">
-          <h1>Récapitulatif de vos dépenses</h1>
-          <ul>
-              <li>recette: montant</li>
-              <li>recette: montant</li>
-              <li>recette: montant</li>
-              <li>...</li>
-          </ul>
-          <p>Total recettes: montant </p>
-      </div>
-  </div>
-
-
-
-<!--
-
-<div id="recettes-wrapper">
-
-    <div id="recettes"></div>
-
-    <p id="recettes-total"></p>
+        <div id="depenses-recap">
+            <h1>Récapitulatif de vos dépenses</h1>
+            <ul id="depenses-recap-list"> </ul>
+            <p id="recap-depenses-total"></p>
+        </div>
+    </div>
 </div>
-
-<div id="depenses-wrapper">
-
-    <div id="depenses"></div>
-
-    <p id="depenses-total"></p>
-</div>
-
-<div id="epargne-wrapper">
-    <input type="text" id="epargne">
-</div>
-
-<div id="resultat-wrapper">
-    <p id="resultat"></p>
-</div>
-
--->
-
-
-
-
-
-
-
 
 
 <script src="js/script.js"></script>
