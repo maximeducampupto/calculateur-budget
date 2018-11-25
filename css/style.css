@@ -8,7 +8,7 @@
 }
 
 body {
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 #screen-calculateur, #screen-total {
@@ -22,8 +22,43 @@ body {
 }
 
 #screen-total {
-    bottom: 100vh;
+    bottom: 110vh;
     left: 2000px;
+}
+
+#screen-total h1 {
+    padding: 2rem;
+    border: 2px solid cornflowerblue;
+    width: fit-content;
+    margin: 0 auto 10rem auto;
+}
+
+#screen-total h2 {
+    margin-bottom: 3rem;
+}
+
+#screen-total h2[id="h2-total"] {
+    margin: 0 auto 4rem auto;
+}
+
+#screen-total #recaps {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
+}
+
+#recaps ul {
+    list-style-type: none;
+    margin-bottom: 2rem;
+}
+
+#recaps {
+    text-align: left;
+}
+
+#retour {
+    margin-top: 6rem;
 }
 
 #screen-calculateur h2 {
@@ -47,7 +82,7 @@ body {
     font-style: italic;
 }
 
-#screen-calculateur button {
+#screen-calculateur button, #retour {
     font-size: 1.4rem;
     padding: 10px;
     background: none;
@@ -56,7 +91,7 @@ body {
     border-radius: 4px;
 }
 
-#screen-calculateur button:hover {
+#screen-calculateur button:hover, #retour:hover {
     animation: buttonHover .2s forwards;
 }
 
@@ -71,6 +106,15 @@ body {
 .screenTotalToLeft {
     animation: screenTotalToLeft .3s forwards;
 }
+
+.calculateurToRight {
+    animation: calculateurToRight .3s forwards;
+}
+
+.screenTotalToRight {
+    animation: screenTotalToRight .3s forwards;
+}
+
 
 @keyframes buttonHover {
     0% {
@@ -98,5 +142,23 @@ body {
     }
     100% {
         left: 0px;
+    }
+}
+
+@keyframes calculateurToRight{
+    0% {
+        left: -2000px;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes screenTotalToRight {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 2000px;
     }
 }
