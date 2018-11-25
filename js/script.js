@@ -49,7 +49,25 @@ Creates list items based on the recettes and depenses arrays to be appended onto
  */
 function displayScreenTotal()
 {
-    h1_total.innerHTML = `Total des opérations: ${getTotal()}`;
+    let totalValue = getTotal(),
+        p = document.getElementById('indication');
+
+    h1_total.innerHTML = `Total des opérations: ${totalValue}`;
+
+
+    if (totalValue < 0)
+    {
+        p.innerHTML = "Attention! Votre budget est négatif";
+        p.style.color = "red";
+    } else if (totalValue === 0)
+    {
+        p.innerHTML = "Votre budget est nul";
+        p.style.color = "cornflowerblue";
+    } else if (totalValue > 0)
+    {
+        p.innerHTML = "Votre budget est positif";
+        p.style.color = "green";
+    }
 
    for (let recette of recettes)
    {

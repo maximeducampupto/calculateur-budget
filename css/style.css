@@ -30,7 +30,7 @@ body {
     padding: 2rem;
     border: 2px solid cornflowerblue;
     width: fit-content;
-    margin: 0 auto 10rem auto;
+    margin: 0 auto 5rem auto;
 }
 
 #screen-total h2 {
@@ -46,6 +46,11 @@ body {
     justify-content: space-between;
     width: 50%;
     margin: 0 auto;
+}
+
+#indication {
+    font-size: 1.3rem;
+    margin-bottom: 5rem;
 }
 
 #recaps ul {
